@@ -2,6 +2,8 @@ import json
 import pandas as pd
 
 class GenerateSchema:
+    
+    PRIMARY_KEYS = ['identificador_unico', 'mes_encuesta']
                         
     def store_schema(self, schema_dict):
         
@@ -49,12 +51,16 @@ class GenerateSchema:
         
         row_schema = {}
         row_schema["name"] = row
-        row_schema["primary_key"] = "false"
+        row_schema["primary_key"] = self.get_primary_key_value(row)
         row_schema["raw_type"] = "str"
         row_schema["master_type"] = data_type.upper()
         row_schema["default"] = self.get_default_field_value(data_type)
         
-        return row_schema     
+        return row_schema   
+    
+    def get_primary_key_value(self, row: str):
+        
+        return 'true' if row.lower() in self.PRIMARY_KEYS else 'false'
     
     def get_default_field_value(self, data_type: str):
         

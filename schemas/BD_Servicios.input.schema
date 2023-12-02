@@ -13,14 +13,14 @@
         },
         {
             "name": "identificador_unico",
-            "primary_key": "false",
+            "primary_key": "true",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
             "name": "Mes_Encuesta",
-            "primary_key": "false",
+            "primary_key": "true",
             "raw_type": "str",
             "master_type": "DATE",
             "default": "0001-01-01"

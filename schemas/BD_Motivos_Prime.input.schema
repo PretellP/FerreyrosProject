@@ -1,5 +1,5 @@
 {
-    "name": "BD_Prime",
+    "name": "BD_Motivos_Prime",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Equipment Data",
     "type": "object",
@@ -96,7 +96,7 @@
             "default": "X0"
         },
         {
-            "name": "Contacto_para_encuesta",
+            "name": "Contacto_encuesta",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
@@ -383,7 +383,21 @@
             "default": "X0"
         },
         {
-            "name": "ORIGEN_ENCUESTA",
+            "name": "Motivos_Insatisfaccion",
+            "primary_key": "false",
+            "raw_type": "str",
+            "master_type": "STRING",
+            "default": "X0"
+        },
+        {
+            "name": "Oportunidad_Mejora",
+            "primary_key": "false",
+            "raw_type": "str",
+            "master_type": "STRING",
+            "default": "X0"
+        },
+        {
+            "name": "Sugerencia",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",

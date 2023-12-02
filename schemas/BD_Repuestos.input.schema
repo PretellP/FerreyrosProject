@@ -13,7 +13,7 @@
         },
         {
             "name": "Mes_encuesta",
-            "primary_key": "false",
+            "primary_key": "true",
             "raw_type": "str",
             "master_type": "DATE",
             "default": "0001-01-01"
