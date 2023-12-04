@@ -16,7 +16,6 @@ bucket_folder_name = config.bucket_folder_name
 # No olvides reemplazar 'my-project' por tu proyecto de Google Cloud
 # En este caso, el archivo Excel se llamará 'local_file.xlsx'
 
-
 class IngestDrive:
 
     def upload_blob(self, bucket_name, source_file_name, destination_blob_name):
@@ -43,6 +42,23 @@ class IngestDrive:
             sheet_data = worksheet.get_all_values()
             headers = sheet_data.pop(0)
             BD = pd.DataFrame(sheet_data, columns=headers)
+            
+            month_column = "Mes_encuesta"
+            for column in BD.columns.to_list():
+                
+                if column.lower() == 'mes_encuesta':    
+                    month_column = column
+                    break
+                
+            data_period = []
+            for index, row in enumerate((BD[month_column].to_numpy()).tolist()):
+                        
+                period = row.split('-')
+                del period[2]
+                period = "".join(period)
+                data_period.append(period)
+            
+            BD['Period'] = data_period
             
             local_file_path = f'{local_folder_name}/{worksheet.title}.parquet'
             BD.to_parquet(local_file_path)

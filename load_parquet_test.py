@@ -17,7 +17,7 @@ scope = [
 credentials = ServiceAccountCredentials.from_json_keyfile_name(key_path, scope)
 
 # TEST 1
-worksheet_id = '1ScJ-6JLvI5Lis1kr8xrS5-JRK5HXq2eTgTojJHLVxd4'
+worksheet_id = '1X38-Ahd5m-1khlF2U3XwTMpv4Bf0U5w80qd0x58N9sA'
 worksheet_title = 'BD_Prime_test'
 
 worksheet = gspread.authorize(credentials).open_by_key(worksheet_id).worksheet(worksheet_title)
@@ -25,7 +25,26 @@ worksheet = gspread.authorize(credentials).open_by_key(worksheet_id).worksheet(w
 sheet_data = worksheet.get_all_values()
 headers = sheet_data.pop(0) 
 
-BD = pd.DataFrame(sheet_data, columns=headers)  
+BD = pd.DataFrame(sheet_data, columns=headers) 
+
+month_column = ""
+for column in BD.columns.to_list():
+    
+    if column.lower() == 'mes_encuesta':    
+        month_column = column
+        break
+    
+
+data = []
+for index, row in enumerate((BD['Mes_encuesta'].to_numpy()).tolist()):
+            
+    period = row.split('-')
+    del period[2]
+    period = "".join(period)
+    data.append(period)
+  
+BD['Period'] = data
+
 
 local_file_path = f'{config.local_folder_name}/{worksheet.title}.parquet'
 BD.to_parquet(local_file_path)

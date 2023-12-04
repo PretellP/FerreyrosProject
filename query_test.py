@@ -7,8 +7,8 @@ osEnviron.set_os_environ(config.KEY_PATH)
 
 PROJECT_ID = 'pe-fesa-datalake-dev01'
 DATA_SET = config.DATA_SET
-ORIGIN_TABLE = 'BD_Prime_test'
-DESTINATION_TABLE = 'BD_Prime'
+ORIGIN_TABLE = 'BD_Prime'
+DESTINATION_TABLE = 'BD_Prime_test'
 
 ORIGIN_TABLE_ID = f'{PROJECT_ID}.{DATA_SET}.{ORIGIN_TABLE}'
 DESTINATION_TABLE_ID = f'{PROJECT_ID}.{DATA_SET}.{DESTINATION_TABLE}'

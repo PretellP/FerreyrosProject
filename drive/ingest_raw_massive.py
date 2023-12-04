@@ -32,6 +32,25 @@ for file in files:
     
     table_id = f'{project_id}.{dataset}.{os.path.splitext(file)[0]}'
     
+    
+    month_column = "Mes_encuesta"
+    for column in df.columns.to_list():
+        
+        if column.lower() == 'mes_encuesta':    
+            month_column = column
+            break
+        
+    data_period = []
+    
+    for index, row in enumerate((df[month_column].to_numpy()).tolist()):
+                
+        period = row.split('-')
+        del period[2]
+        period = "".join(period)
+        data_period.append(period)
+    
+    df['Period'] = data_period
+    
     table_schema = []
     for column in list(df.columns.values):
         table_schema.append(bigquery.SchemaField(column, 'STRING'))
