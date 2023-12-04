@@ -72,7 +72,7 @@ class RawToProcessed:
                                         INSERT INTO 
                                         {DEST_TABLE_ID}
                                         SELECT {COLUMNS}, SESSION_USER() AS USUARIO, 
-                                        TIMESTAMP({LOAD_TMST}) AS FECHA_CARGA
+                                        TIMESTAMP('{LOAD_TMST}') AS FECHA_CARGA
                                         FROM {ORIG_TABLE_ID}
                                     """
         query = client.query(sql_insert_raw_to_processed)
@@ -86,7 +86,7 @@ class RawToProcessed:
                         CREATE TABLE {DEST_TABLE}
                         PARTITION BY DATE(FECHA_CARGA) AS 
                         SELECT {COLUMNS}, SESSION_USER() AS USUARIO,
-                        TIMESTAMP({LOAD_TMST}) AS FECHA_CARGA
+                        TIMESTAMP('{LOAD_TMST}') AS FECHA_CARGA
                         FROM {ORIG_TABLE}
                     """
         
