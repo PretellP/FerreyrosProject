@@ -7,11 +7,13 @@ osEnviron.set_os_environ(config.KEY_PATH)
 
 PROJECT_ID = 'pe-fesa-datalake-dev01'
 DATA_SET = config.DATA_SET
+# DATASET_DEST = config.DATA_SET
+DATASET_DEST = "processed_fuentes_diversas"
 ORIGIN_TABLE = 'BD_Prime'
 DESTINATION_TABLE = 'BD_Prime_test'
 
 ORIGIN_TABLE_ID = f'{PROJECT_ID}.{DATA_SET}.{ORIGIN_TABLE}'
-DESTINATION_TABLE_ID = f'{PROJECT_ID}.{DATA_SET}.{DESTINATION_TABLE}'
+DESTINATION_TABLE_ID = f'{PROJECT_ID}.{DATASET_DEST}.{DESTINATION_TABLE}'
 
 client = bigquery.Client(project = PROJECT_ID)
 

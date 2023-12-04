@@ -84,5 +84,4 @@ for column_item in df_db.items():
     
     schema_dict = grt_sch.get_schema_dictionary(df_db, column_item, df['DATA_TYPE'])
     grt_sch.store_schema(schema_dict)
-        
                 

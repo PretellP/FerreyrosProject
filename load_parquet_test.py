@@ -53,6 +53,6 @@ print(f'Archivo: {worksheet.title} se convirtio a parquet')
 
 destination_blob_name = f'{bucket_folder_name}/{worksheet.title}.parquet'
 
-ingest_drive = IngestDrive()
-ingest_drive.upload_blob(bucket_name, local_file_path, destination_blob_name)
+# ingest_drive = IngestDrive()
+# ingest_drive.upload_blob(bucket_name, local_file_path, destination_blob_name)
 

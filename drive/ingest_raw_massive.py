@@ -41,7 +41,6 @@ for file in files:
             break
         
     data_period = []
-    
     for index, row in enumerate((df[month_column].to_numpy()).tolist()):
                 
         period = row.split('-')
