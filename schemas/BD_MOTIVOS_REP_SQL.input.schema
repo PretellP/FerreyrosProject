@@ -1,312 +1,305 @@
 {
-    "name": "BD_Motivos_Ren",
+    "name": "BD_MOTIVOS_REP_SQL",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Equipment Data",
     "type": "object",
     "fields": [
         {
-            "name": "Organizacion",
+            "name": "ORGANIZACION",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Mes_Encuesta",
+            "name": "MES_ENCUESTA",
             "primary_key": "true",
             "raw_type": "str",
             "master_type": "DATE",
             "default": "0001-01-01"
         },
         {
-            "name": "Nro_Sucursal",
+            "name": "N_SUCURSAL",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Sucursal",
+            "name": "SUCURSAL",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Oficina",
+            "name": "OFICINA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Numero_de_Cliente",
+            "name": "NUMERO_CLIENTE",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Nombre_Cliente",
+            "name": "NOMBRE_CLIENTE",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Numero_Cliente",
+            "name": "CONTACTO_CLIENTE",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Contacto_Cliente",
+            "name": "TELEFONO_CONTACTO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Telefono_Contacto",
+            "name": "MONTO_FACTURADO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Codigo_Componente",
+            "name": "DOCUMENTO_REFERENCIA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Serie",
+            "name": "CODIGO_COMPONENTE",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Correo_contacto",
+            "name": "CORREO_CONTACTO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Fecha_finalizacion_encuesta",
+            "name": "FECHA_FINALIZACION_LA_ENCUESTA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "DATE",
             "default": "0001-01-01"
         },
         {
-            "name": "Persona_contesto_encuesta",
+            "name": "PERSONA_QUE_RESPONDIO_LA_ENCUESTA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Telefono",
+            "name": "TELEFONO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Satisfaccion_General",
+            "name": "SATISFACCION_GENERAL",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Recompra",
+            "name": "RECOMPRA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Recomendacion",
+            "name": "RECOMENDACION",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Facilidad_para_tramite",
+            "name": "FACILIDAD_PARA_EL_TRAMITE",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Disponibilidad",
+            "name": "DISPONIBILIDAD_CONOCIMIENTO_VENDEDOR",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Respuesta",
+            "name": "RESPUESTA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Comunicacion",
+            "name": "COMUNICACION",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Preparacion",
+            "name": "PREPARACION_STOCK",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Duracion",
+            "name": "DURACION",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Calidad",
+            "name": "CALIDAD",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Puntualidad_factura",
+            "name": "PUNTUALIDAD_DE_FACTURA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Precision_factura",
+            "name": "PRECISION_DE_FACTURA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Satisfaccion_General_Coms",
+            "name": "SATISFACCION_GENERAL_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Recompra_Coms",
+            "name": "RECOMPRA_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Recomendacion_Coms",
+            "name": "RECOMENDACION_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Facilidad_para_Tramite_Coms",
+            "name": "FACILIDAD_PARA_EL_TRAMITE_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Disponibilidad_Fiabilidad_Coms",
+            "name": "DISPONIBILIDAD_Y_FIABILIDAD_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Respuesta_Coms",
+            "name": "RESPUESTA_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Comunicacion_Coms",
+            "name": "COMUNICACION_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Preparacion_Coms",
+            "name": "PREPARACION_COMS",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Duracion_Coms",
+            "name": "DURACION_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Calidad_Coms",
+            "name": "CALIDAD_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Puntualidad_Factura_Coms",
+            "name": "PUNTUALIDAD_DE_FACTURA_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Precision_de_Factura_Coms",
+            "name": "PRECISION_DE_FACTURA_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Mayor_Valoracion_Coms",
+            "name": "MAYOR_VALORACION_COMENTARIO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Comentarios_Adicionales",
+            "name": "COMENTARIOS_ADICIONALES",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Archivo_audio",
-            "primary_key": "false",
-            "raw_type": "str",
-            "master_type": "STRING",
-            "default": "X0"
-        },
-        {
-            "name": "Region",
+            "name": "REGION",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
@@ -320,28 +313,28 @@
             "default": "X0"
         },
         {
-            "name": "Unidad_negocio",
+            "name": "UNIDAD_NEGOCIOS",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Segmento",
+            "name": "SEGMENTO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Segmento_2",
+            "name": "SEGMENTO_2",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Mercado",
+            "name": "MERCADO",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
@@ -362,14 +355,14 @@
             "default": "X0"
         },
         {
-            "name": "Nro_Encuestas",
+            "name": "NRO_ENCUESTAS",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "INT64",
             "default": "0"
         },
         {
-            "name": "Indice_Lealtad",
+            "name": "INDICE_LEALTAD",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "FLOAT64",
@@ -386,18 +379,25 @@
             "name": "NLS",
             "primary_key": "false",
             "raw_type": "str",
-            "master_type": "FLOAT64",
-            "default": "0.0"
+            "master_type": "INT64",
+            "default": "0"
         },
         {
-            "name": "Tipo_razon_social",
+            "name": "TIPO_ENCUESTA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Razon_social_Parent",
+            "name": "TIPO_RAZON_SOCIAL",
+            "primary_key": "false",
+            "raw_type": "str",
+            "master_type": "STRING",
+            "default": "X0"
+        },
+        {
+            "name": "RAZON_SOCIAL_PARENT",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
@@ -411,13 +411,6 @@
             "default": "X0"
         },
         {
-            "name": "LINEA",
-            "primary_key": "false",
-            "raw_type": "str",
-            "master_type": "STRING",
-            "default": "X0"
-        },
-        {
             "name": "MARCA",
             "primary_key": "false",
             "raw_type": "str",
@@ -425,21 +418,35 @@
             "default": "X0"
         },
         {
-            "name": "Motivo_Insatisfaccion",
+            "name": "LINEA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Oportunidad_Mejora",
+            "name": "MOTIVO_INSATISFACCION",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",
             "default": "X0"
         },
         {
-            "name": "Sugerencia_Mejora",
+            "name": "OPORTUNIDAD_MEJORA",
+            "primary_key": "false",
+            "raw_type": "str",
+            "master_type": "STRING",
+            "default": "X0"
+        },
+        {
+            "name": "SUGERENCIA_MEJORA",
+            "primary_key": "false",
+            "raw_type": "str",
+            "master_type": "STRING",
+            "default": "X0"
+        },
+        {
+            "name": "PERIODO_CARGA",
             "primary_key": "false",
             "raw_type": "str",
             "master_type": "STRING",

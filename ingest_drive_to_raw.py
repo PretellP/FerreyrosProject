@@ -5,12 +5,16 @@ import load_google_drive as lgd
 from settings import config
 from os_environ import osEnviron
 from gcsfs import GCSFileSystem
+import datetime as dt
+import os
 
 osEnviron.set_os_environ(config.KEY_PATH)
 
-BUCKET_NAME = config.BUCKET_NAME
-local_folder_name = config.local_folder_name
-bucket_folder_name = config.bucket_folder_name
+BUCKET_NAME = config.BUCKET_RAW_PARQUET_NAME
+local_folder_name = config.local_parquet_temp_folder
+
+bucket_folder_name = config.BUCKET_PARQUET_FOLDER
+bucket_htry_folder_name = config.BUCKET_PARQUET_HTRY_FOLDER
 
 project_id = config.PROJECT_ID
 dataset = config.DATA_SET_RAW
@@ -79,7 +83,7 @@ class IngestDriveToRaw:
         
         return table_schema
     
-    def ingest_to_raw(self, table_schema, df, table_id, file_name):
+    def ingest_to_raw(self, client, table_schema, df, table_id, file_name):
             
         job_config = bigquery.LoadJobConfig(
                         schema=table_schema,
@@ -97,28 +101,50 @@ class IngestDriveToRaw:
         print("Cargadas {} filas.".format(destination_table.num_rows))
         
         
-    def upload_massive(self, client, worksheet, local_folder_name, bucket_name, bucket_folder_name):
-        
-        self.convert_to_parquet(worksheet, local_folder_name)
-        
-        # Sube el archivo a Cloud Storage
-        destination_blob_name = f'{bucket_folder_name}/{worksheet.title}.parquet'
-        local_file_path = self.get_local_file_path(worksheet.title, local_folder_name)
-        self.upload_blob(bucket_name, local_file_path, destination_blob_name)
+    def upload_blob_to_raw(self, client, bucket_name, destination_blob_name, table_name):
         
         # INGEST FROM CLOUD STORAGE TO RAW
         df = self.read_parquet_from_cloud_storage(bucket_name, destination_blob_name)
+    
         month_column = self.get_month_column(df)
         self.add_period_column(df, month_column)
         
         table_schema = self.get_table_schema(df)
-        table_id = f'{project_id}.{dataset}.{worksheet.title}'
+        table_id = f'{project_id}.{dataset}.{table_name}'
         
-        self.ingest_to_raw(table_schema, df, table_id, worksheet.title)
+        self.ingest_to_raw(client, table_schema, df, table_id, table_name)
+        
+        
+    def upload_parquet_to_raw(self, client, worksheet, local_folder_name, bucket_name):
+        
+        self.convert_to_parquet(worksheet, local_folder_name)
+        
+        # Sube el archivo a Cloud Storage
+        
+        local_file_path = self.get_local_file_path(worksheet.title, local_folder_name)
+        
+        destination_blob_prime_name = f'{bucket_folder_name}/{worksheet.title}.parquet'
+        self.upload_blob(bucket_name, local_file_path, destination_blob_prime_name)
+        
+        now = dt.datetime.now()
+        destination_blob_htry_name = f'{bucket_htry_folder_name}/{worksheet.title}_HISTORY_{now.strftime("%Y%m%d_%H%M%S")}.parquet'
+        self.upload_blob(bucket_name, local_file_path, destination_blob_htry_name)
+        
+        self.upload_blob_to_raw(client, bucket_name, destination_blob_prime_name, worksheet.title)
+        
+        os.remove(local_file_path)
+        
+    def upload_massive_drive_to_raw(self):
+        
+        client = bigquery.Client(project = project_id)
+
+        for worksheet in lgd.worksheets:
+            self.upload_parquet_to_raw(client, worksheet, local_folder_name, BUCKET_NAME)
+
+        for worksheet_sql in lgd.worksheets_sql:
+            self.upload_parquet_to_raw(client, worksheet_sql, local_folder_name, BUCKET_NAME)
             
     
-ingest_drive = IngestDriveToRaw()
-client = bigquery.Client(project = project_id)
 
-for worksheet in lgd.worksheets:
-    ingest_drive.upload_massive(client, worksheet, local_folder_name, BUCKET_NAME, bucket_folder_name)
+
+
