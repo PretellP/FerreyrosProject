@@ -1,0 +1,913 @@
+QUERIES:
+
+------------------- CARGA DRIVE ----------------------
+
+-------------------------------------------------------------------------
+DESDE processed_fuentes_diversas HASTA processed_common_data_model.Survey
+-------------------------------------------------------------------------
+
+----------- BD_Prime ------------
+
+insert pe-fesa-datalake-prd01.into processed_common_data_model.Survey
+    (
+    SurveyID,
+    Domain,
+    CompanyID,
+    CompanyDescription,
+    BranchOfficeID,
+    BranchOfficeDescription,
+    SalesOfficeDescription,
+    SurveyDate,
+    SurveyEndDate,
+    CustomerID,
+    CustomerIDDBS,
+    CustomerName,
+    ModelDescription,
+    FamilyDescription,
+    SerialNumber,
+    AssignmentReport,
+    SurveyContactName,
+    SurveyContactJobPosition,
+    SurveyContactPhoneNumber,
+    SurveyContactEmail,
+    SatisfactionEvaluation,
+    BuybackEvaluation,
+    RecommendationEvaluation,
+    AttentionEvaluation,
+    ConfigurationEvaluation,
+    PerformanceEvaluation,
+    PhysicalDeliveryEvaluation,
+    TechnicalDeliveryEvaluation,
+    SatisfactionComment,
+    BuybackComment,
+    RecommendationComment,
+    AttentionComment,
+    ConfigurationComment,
+    PerformanceComment,
+    PhysicalDeliveryComment,
+    TechnicalDeliveryComment,
+    HigherRatingComment,
+    AdditionalComment,
+    RegionDescription,
+    ResponsibleManagement,
+    SalesRepGroupDescription,
+    CustomerSegmentDescription,
+    AditionalCustomerSegmentDescription,
+    CustomerMarketDescription,
+    RRVV,
+    PSSR,
+    SurveyCounter,
+    LoyaltyIndex,
+    NetLoyaltyScoreDescription,
+    NetLoyaltyScore,
+    ExecutedBy,
+    CustomerType,
+    ParentCustomerName,
+    AttendedBy,
+    BrandDescription,
+    LineDescription,
+    SurveyOrigin,
+    Period,
+    UniqueID
+    )
+    SELECT
+    Reporte_Asignacion,
+    'PRIME',
+    CASE
+        WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+        ELSE NULL
+    END,
+    ORGANIZACION,
+    NRO_SUCURSAL,
+    SUCURSAL,
+    OFICINA,
+    MES_ENCUESTA,
+    Fecha_finalizacion_encuesta,
+    Codigo_Cliente,
+    Codigo_Cliente,
+    Nombre_cliente,
+    CASE
+        WHEN IND_MODELO = 'None' THEN null
+        else IND_MODELO
+    END,
+    Familia_productos,
+    CASE
+        WHEN SERIE = 'None' THEN null
+        else SERIE
+    END,
+    Reporte_Asignacion,
+    Contacto_para_encuesta,
+    CASE
+        WHEN CARGO = 'None' THEN null
+        else CARGO
+    END,
+    CASE
+        WHEN TELEFONO = 'None' THEN null
+        else TELEFONO
+    END,
+    CASE
+        WHEN CORREO_ELECTRONICO = 'None' THEN null
+        else CORREO_ELECTRONICO
+    END,
+    SATISFACCION,
+    RECOMPRA,
+    RECOMENDACION,
+    ATENCION,
+    CONFIGURACION,
+    Desempeno,
+    ENTREGA_FISICA,
+    ENTREGA_TECNICA,
+    CASE
+        WHEN COMENTARIO_SATISFACCION = 'None' THEN null
+        else COMENTARIO_SATISFACCION
+    END,
+    CASE
+        WHEN COMENTARIO_RECOMPRA = 'None' THEN null
+        else COMENTARIO_RECOMPRA
+    END,
+    CASE
+        WHEN COMENTARIO_RECOMENDACION = 'None' THEN null
+        else COMENTARIO_RECOMENDACION
+    END,
+    CASE
+        WHEN COMENTARIO_ATENCION = 'None' THEN null
+        else COMENTARIO_ATENCION
+    END,
+    CASE
+        WHEN COMENTARIO_CONFIGURACION = 'None' THEN null
+        else COMENTARIO_CONFIGURACION
+    END,
+    Comentario_Desempeno,
+    CASE
+        WHEN COMENTARIO_ENTREGA_FISICA = 'None' THEN null
+        else COMENTARIO_ENTREGA_FISICA
+    END,
+    CASE
+        WHEN COMENTARIO_ENTREGA_TECNICA = 'None' THEN null
+        else COMENTARIO_ENTREGA_TECNICA
+    END,
+    CASE
+        WHEN MAYOR_VALORACION = 'None' THEN null
+        else MAYOR_VALORACION
+    END,
+    CASE
+        WHEN COMENTARIO_ADICIONAL = 'None' THEN null
+        else COMENTARIO_ADICIONAL
+    END,
+    CASE
+        WHEN REGION = 'None' THEN null
+        else REGION
+    END,
+    CASE
+        WHEN GERENCIA_RESPONSABLE = 'None' THEN null
+        else GERENCIA_RESPONSABLE
+    END,
+    Unidad_negocio,
+    SEGMENTO,
+    CASE
+        WHEN SEGMENTO_2 = 'None' THEN null
+        else SEGMENTO_2
+    END,
+    MERCADO,
+    CASE
+        WHEN RRVV = 'None' THEN null
+        else RRVV
+    END,
+    CASE
+        WHEN PSSR = 'None' THEN null
+        else PSSR
+    END,
+    NRO_ENCUESTAS,
+    CAST(Indice_lealtad AS NUMERIC),
+    NLS2,
+    CAST(NLS AS NUMERIC),
+    EJECUTADA_POR,
+    Tipo_razon_social,
+    RAZON_SOCIAL_PARENT,
+    ATENDIDO_POR,
+    MARCA,
+    LINEA,
+    ORIGEN_ENCUESTA,
+    (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+    identificador_unico
+    FROM pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Prime
+
+
+----------- BD_Rental -----------
+
+insert into pe-fesa-datalake-prd01.processed_common_data_model.Survey
+        (
+        SurveyID,
+        Domain,
+        CompanyID,
+        CompanyDescription,
+        BranchOfficeID,
+        BranchOfficeDescription,
+        SalesOfficeDescription,
+        SurveyDate,
+        SurveyEndDate,
+        CustomerID,
+        CustomerIDDBS,
+        CustomerName,
+        CustomerPhomeNumber,
+        ComponentCode,
+        SerialNumber,
+        SurveyContactName,
+        SurveyContactPhoneNumber,
+        SurveyContactEmail,
+        SurveyPerson,
+        SurveyPersonNumber,
+        SatisfactionEvaluation,
+        BuybackEvaluation,
+        RecommendationEvaluation,
+        EaseDoingBusinessEvaluation,
+        AvailabilityEvaluation,
+        AnswerEvaluation,
+        CommunicationEvaluation,
+        PreparationEvaluation,
+        DurationEvaluation,
+        QualityEvaluation,
+        InvoicePunctualityEvaluation,
+        InvoiceAccuracyEvaluation,
+        SatisfactionComment,
+        BuybackComment,
+        RecommendationComment,
+        EaseDoingBusinessComment,
+        AvailabilityComment,
+        AnswerComment,
+        CommunicationComment,
+        PreparationComment,
+        DurationComment,
+        QualityComment,
+        InvoicePunctualityComment,
+        InvoiceAccuracyComment,
+        HigherRatingComment,
+        AdditionalComment,
+        AudioFile,
+        RegionDescription,
+        ResponsibleManagement,
+        SalesRepGroupDescription,
+        CustomerSegmentDescription,
+        AditionalCustomerSegmentDescription,
+        CustomerMarketDescription,
+        RRVV,
+        PSSR,
+        SurveyCounter,
+        LoyaltyIndex,
+        NetLoyaltyScoreDescription,
+        NetLoyaltyScore,
+        CustomerType,
+        ParentCustomerName,
+        AttendedBy,
+        BrandDescription,
+        LineDescription,
+        SurveyOrigin,
+        Period
+        )
+        SELECT 
+        CAST(EXTRACT(MONTH FROM DATE (MES_ENCUESTA)) AS STRING) || '-' || NUMERO_CLIENTE || '-' || Serie,
+        'RENTAL'	,
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        CASE
+            WHEN ORGANIZACION = 'None' THEN null
+            else ORGANIZACION
+        END,
+        CASE
+            WHEN NRO_SUCURSAL = 'None' THEN null
+            else NRO_SUCURSAL
+        END,
+        CASE
+            WHEN SUCURSAL = 'None' THEN null
+            else SUCURSAL
+        END,
+        CASE
+            WHEN OFICINA = 'None' THEN null
+            else OFICINA
+        END,
+        MES_ENCUESTA,
+        Fecha_finalizacion_encuesta,
+        CASE
+            WHEN NUMERO_CLIENTE = 'None' THEN null
+            else NUMERO_CLIENTE
+        END,
+        CASE
+            WHEN NUMERO_CLIENTE = 'None' THEN null
+            else NUMERO_CLIENTE
+        END,
+        Nombre_Cliente,
+        Numero_Cliente,
+        CASE
+            WHEN CODIGO_COMPONENTE = 'None' THEN null
+            else CODIGO_COMPONENTE
+        END,
+        CASE
+            WHEN SERIE = 'None' THEN null
+            else SERIE
+        END,
+        Contacto_Cliente,
+        CASE
+            WHEN TELEFONO_CONTACTO = 'None' THEN null
+            else TELEFONO_CONTACTO
+        END,
+        CASE
+            WHEN CORREO_CONTACTO = 'None' THEN null
+            else CORREO_CONTACTO
+        END,
+        Persona_contesto_encuesta,
+        TELEFONO,
+        SATISFACCION_GENERAL,
+        RECOMPRA,
+        RECOMENDACION,
+        Facilidad_para_tramite,
+        DISPONIBILIDAD,
+        RESPUESTA,
+        COMUNICACION,
+        PREPARACION,
+        DURACION,
+        CALIDAD,
+        PUNTUALIDAD_FACTURA,
+        PRECISION_FACTURA,
+        CASE
+            WHEN SATISFACCION_GENERAL_COMS = 'None' THEN null
+            else SATISFACCION_GENERAL_COMS
+        END,
+        CASE
+            WHEN RECOMPRA_COMS = 'None' THEN null
+            else RECOMPRA_COMS
+        END,
+        CASE
+            WHEN RECOMENDACION_COMS = 'None' THEN null
+            else RECOMENDACION_COMS
+        END,
+        Facilidad_Tramite_Coms,
+        Disponibilidad_Fiabilidad_Coms,
+        CASE
+            WHEN RESPUESTA_COMS = 'None' THEN null
+            else RESPUESTA_COMS
+        END,
+        COMUNICACION_COMS,
+        PREPARACION_COMS,
+        DURACION_COMS,
+        CALIDAD_COMS,
+        PUNTUALIDAD_FACTURA_COMS,
+        PRECISION_FACTURA_COMS,
+        MAYOR_VALORACION_COMS,
+        COMENTARIOS_ADICIONALES,
+        ARCHIVO_AUDIO,
+        REGION,
+        GERENCIA_RESPONSABLE,
+        UNIDAD_NEGOCIO,
+        SEGMENTO,
+        CASE
+            WHEN SEGMENTO_2 = 'nan' THEN null
+            else SEGMENTO_2
+        END,
+        MERCADO,
+        RRVV,
+        PSSR,
+        NRO_ENCUESTAS,
+        CAST(INDICE_LEALTAD AS NUMERIC),
+        NLS2,
+        CAST(NLS AS NUMERIC),
+        TIPO_RAZON_SOCIAL,
+        RAZON_SOCIAL_PARENT,
+        ATENDIDO_POR,
+        MARCA,
+        LINEA,
+        ORIGEN_ENCUESTA,
+        (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        FROM pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Rental
+
+
+----------- BD_Repuestos -----------
+
+insert pe-fesa-datalake-prd01.into processed_common_data_model.Survey
+        (
+        SurveyID,
+        Domain,
+        CompanyID,
+        CompanyDescription,
+        SurveyType,
+        BranchOfficeID,
+        BranchOfficeDescription,
+        SalesOfficeDescription,
+        SurveyDate,
+        SurveyEndDate,
+        CustomerID,
+        CustomerIDDBS,
+        CustomerName,
+        InvoiceAmount,
+        ReferenceDocument,
+        ComponentCode,
+        SurveyContactName,
+        SurveyContactPhoneNumber,
+        SurveyContactEmail,
+        SurveyPerson,
+        SurveyPersonNumber,
+        SatisfactionEvaluation,
+        BuybackEvaluation,
+        RecommendationEvaluation,
+        EaseDoingBusinessEvaluation,
+        AvailabilityEvaluation,
+        AnswerEvaluation,
+        CommunicationEvaluation,
+        PreparationEvaluation,
+        DurationEvaluation,
+        QualityEvaluation,
+        InvoicePunctualityEvaluation,
+        InvoiceAccuracyEvaluation,
+        SatisfactionComment,
+        BuybackComment,
+        RecommendationComment,
+        EaseDoingBusinessComment,
+        AvailabilityComment,
+        AnswerComment,
+        CommunicationComment,
+        PreparationComment,
+        DurationComment,
+        QualityComment,
+        InvoicePunctualityComment,
+        InvoiceAccuracyComment,
+        HigherRatingComment,
+        AdditionalComment,
+        RegionDescription,
+        ResponsibleManagement,
+        SalesRepGroupDescription,
+        CustomerSegmentDescription,
+        AditionalCustomerSegmentDescription,
+        CustomerMarketDescription,
+        RRVV,
+        PSSR,
+        SurveyCounter,
+        LoyaltyIndex,
+        NetLoyaltyScoreDescription,
+        NetLoyaltyScore,
+        CustomerType,
+        ParentCustomerName,
+        AttendedBy,
+        BrandDescription,
+        LineDescription,
+        SurveyOrigin,
+        Period
+        )
+        SELECT 
+        DOCUMENTO_REFERENCIA,
+        'PARTS',
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        ORGANIZACION,
+        TIPO_ENCUESTA,
+        N_SUCURSAL,
+        SUCURSAL,
+        OFICINA,
+        MES_ENCUESTA,
+        Fecha_finalizacion_encuesta,
+        NUMERO_CLIENTE,
+        NUMERO_CLIENTE,
+        NOMBRE_CLIENTE,
+        MONTO_FACTURADO,
+        DOCUMENTO_REFERENCIA,
+        CODIGO_COMPONENTE,
+        CONTACTO_CLIENTE,
+        TELEFONO_CONTACTO,
+        Correo_del_contacto,
+        Persona_respondio_encuesta,
+        TELEFONO,
+        SATISFACCION_GENERAL,
+        RECOMPRA,
+        RECOMENDACION,
+        Facilidad_para_tramite,
+        DISPONIBILIDAD_CONOCIMIENTO_VENDEDOR,
+        RESPUESTA,
+        COMUNICACION,
+        PREPARACION_STOCK,
+        DURACION,
+        CALIDAD,
+        PUNTUALIDAD_FACTURA,
+        PRECISION_FACTURA,
+        CASE
+            WHEN SATISFACCION_GENERAL_COMENTARIO = 'None' THEN null
+            else SATISFACCION_GENERAL_COMENTARIO 
+        END,
+        CASE
+            WHEN RECOMPRA_COMENTARIO = 'None' THEN null
+            else RECOMPRA_COMENTARIO
+        END,
+        CASE
+            WHEN RECOMENDACION_COMENTARIO = 'None' THEN null
+            else RECOMENDACION_COMENTARIO
+        END,
+        Facilidad_Tramite_Comentario,
+        CASE
+            WHEN Disponibilidad_Fiabilidad_Comentario = 'None' THEN null
+            else Disponibilidad_Fiabilidad_Comentario
+        END,
+        CASE
+            WHEN RESPUESTA_COMENTARIO = 'None' THEN null
+            else RESPUESTA_COMENTARIO
+        END,
+        COMUNICACION_COMENTARIO,
+        PREPARACION_COMS,
+        DURACION_COMENTARIO,
+        CALIDAD_COMENTARIO,
+        Puntualidad_Factura_Comntario,
+        PRECISION_FACTURA_COMENTARIO,
+        MAYOR_VALORACION_COMENTARIO,
+        COMENTARIOS_ADICIONALES,
+        REGION,
+        GERENCIA_RESPONSABLE,
+        UNIDAD_NEGOCIOS,
+        SEGMENTO,
+        SEGMENTO_2,
+        MERCADO,
+        RRVV,
+        PSSR,
+        NRO_ENCUESTAS,
+        CAST(INDICE_LEALTAD AS NUMERIC),
+        NLS2,
+        CAST(NLS AS NUMERIC),
+        TIPO_RAZON_SOCIAL,
+        RAZON_SOCIAL_PARENT,
+        ATENDIDO_POR,
+        MARCA,
+        LINEA,
+        ORIGEN_ENCUESTA,
+        (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        FROM pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Repuestos
+
+
+----------- BD_Servicios -----------
+
+insert into pe-fesa-datalake-prd01.processed_common_data_model.Survey
+        (
+        SurveyID,
+        Domain,
+        CompanyID,
+        CompanyDescription,
+        BranchOfficeID,
+        BranchOfficeDescription,
+        SalesOfficeDescription,
+        OperationPlace,
+        SurveyDate,
+        SurveyEndDate,
+        CustomerID,
+        CustomerIDDBS,
+        CustomerName,
+        ModelDescription,
+        SerialNumber,
+        SurveyContactName,
+        SurveyPerson,
+        WorkOrderNumber,
+        OpeningDate,
+        InvoiceDate,
+        TransactionDate,
+        LastJobDate,
+        WorkOrderClosingDate,
+        InvoiceID,
+        ServiceType,
+        CSAType,
+        WorkshopGroup,
+        WorkOrderPrefix,
+        CC_CN,
+        WorkOrderPositionType,
+        SatisfactionEvaluation,
+        BuybackEvaluation,
+        RecommendationEvaluation,
+        EaseDoingBusinessEvaluation,
+        AvailabilityEvaluation,
+        AnswerEvaluation,
+        CommunicationEvaluation,
+        PreparationEvaluation,
+        DurationEvaluation,
+        TangibleInvoiceEvaluation,
+        QualityEvaluation,
+        InvoicePunctualityEvaluation,
+        InvoiceAccuracyEvaluation,
+        SatisfactionComment,
+        BuybackComment,
+        RecommendationComment,
+        EaseDoingBusinessComment,
+        AvailabilityComment,
+        AnswerComment,
+        CommunicationComment,
+        PreparationComment,
+        DurationComment,
+        TangibleInvoiceComment,
+        QualityComment,
+        InvoicePunctualityComment,
+        InvoiceAccuracyComment,
+        HigherRatingComment,
+        AdditionalComment,
+        RegionDescription,
+        ResponsibleManagement,
+        SalesRepGroupDescription,
+        CustomerSegmentDescription,
+        AditionalCustomerSegmentDescription,
+        CustomerMarketDescription,
+        RRVV,
+        PSSR,
+        SurveyCounter,
+        LoyaltyIndex,
+        NetLoyaltyScoreDescription,
+        NetLoyaltyScore,
+        CustomerType,
+        ParentCustomerName,
+        AttendedBy,
+        BrandDescription,
+        LineDescription,
+        SurveyOrigin,
+        CSAPlanType,
+        Period,
+        UniqueID
+        )
+        SELECT
+        Nro_de_Orden_de_Trabajo,
+        'SERVICE',
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        ORGANIZACION,
+        NRO_SUCURSAL,
+        SUCURSAL,
+        OFICINA,
+        LUGAR_DE_OPERACION,
+        MES_ENCUESTA,
+        FECHA_FINALIZACION_DE_ENCUESTA,
+        NRO_DE_CLIENTE,
+        NRO_DE_CLIENTE,
+        NOMBRE_DE_CLIENTE,
+        MODELO,
+        NUMERO_DE_SERIE,
+        CONTACTO_CON_EL_CLIENTE,
+        PERSONA_CONTESTO_LA_ENCUESTA,
+        NRO_DE_ORDEN_DE_TRABAJO,
+        FECHA_DE_APERTURA,
+        FECHA_DE_FACTURA,
+        FECHA_DE_TRANSACCION,
+        ULTIMO_TRABAJO,
+        CIERRE_ORDEN_TRABAJO,
+        NRO_DE_FACTURA,
+        TIPO_SERVICIO,
+        TIPO_DE_CSA,
+        AGRUPACION_TALLERES,
+        PREFIJO_DE_LA_OT,
+        CC_CN,
+        TIPO_CARGO_OT,
+        SATISFACCION_GENERAL,
+        RECOMPRA,
+        RECOMENDACION,
+        FACILIDAD_PARA_HACER_NEGOCIOS,
+        DISPONIBILIDAD,
+        RESPUESTA,
+        COMUNICACION,
+        PREPARACION,
+        DURACION,
+        TANGIBLES_FACTURA,
+        CALIDAD,
+        PUNTUALIDAD_DE_LA_FACTURA,
+        PRECISION_DE_LA_FACTURA,
+        SATISFACCION_GENERAL_COMS,
+        RECOMPRA_COMS,
+        RECOMENDACION_COMS,
+        FACILIDAD_PARA_HACER_NEGOCIOS_COMS,
+        Disponibilidad_Fiabilidad_Coms,
+        RESPUESTA_COMS,
+        COMUNICACION_COMS,
+        PREPARACION_COMS,
+        DURACION_COMS,
+        TANGIBLES_FACTURA_COMS,
+        CALIDAD_COMS,
+        Puntualidad_de_factura_Coms,
+        PRECISION_DE_FACTURA_COMS,
+        MAYOR_VALORACION_COMS,
+        COMENTARIOS_ADICIONALES,
+        REGION,
+        GERENCIA_RESPONSABLE,
+        UNIDAD_DE_NEGOCIOS,
+        SEGMENTO,
+        SEGMENTO_2,
+        MERCADO,
+        RRVV,
+        CASE
+            WHEN PSSR = 'nan' THEN null
+            else PSSR
+        END,
+        NRO_ENCUESTAS,
+        CAST(INDICE_DE_LEALTAD AS NUMERIC),
+        NLS2,
+        CAST(NLS AS NUMERIC),
+        TIPO_DE_RAZON_SOCIAL,
+        RAZON_SOCIAL_PARENT,
+        ATENDIDO_POR,
+        MARCA,
+        LINEA,
+        ORIGEN_ENCUESTA,
+        TIPO_DE_CSA,
+        (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        identificador_unico	
+        FROM pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Servicios
+
+
+
+
+
+----------------------------------------------------------------------------------------
+DESDE processed_fuentes_diversas HASTA processed_common_data_model.ReasonDissatisfaction
+----------------------------------------------------------------------------------------
+
+----------- BD_Motivos_rep -----------
+
+insert into pe-fesa-datalake-prd01.processed_common_data_model.ReasonDissatisfaction 
+        (
+        SurveyID,
+        CompanyID,
+        CompanyDescription,
+        Domain,
+        CustomerID,
+        CustomerIDDBS,
+        Period,
+        ReasonDissatisfaction,
+        OpportunityImprovement,
+        Suggestion
+        )
+        SELECT
+        CASE
+            WHEN DOCUMENTO_REFERENCIA = 'None' THEN null
+            ELSE DOCUMENTO_REFERENCIA
+        END,
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        CASE
+            WHEN ORGANIZACION = 'None' THEN null
+            else ORGANIZACION
+        END,
+        'PARTS',
+        CASE
+            WHEN NUMERO_CLIENTE = 'None' THEN null
+            else NUMERO_CLIENTE
+        END,
+        CASE
+            WHEN NUMERO_CLIENTE = 'None' THEN null
+            else NUMERO_CLIENTE
+        END,
+        (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        CASE
+            WHEN MOTIVO_INSATISFACCION = 'None' THEN null
+            else MOTIVO_INSATISFACCION
+        END,
+        CASE
+            WHEN OPORTUNIDAD_MEJORA = 'None' THEN null
+            else OPORTUNIDAD_MEJORA
+        END,
+        CASE
+            WHEN SUGERENCIA_MEJORA = 'None' THEN null
+            else SUGERENCIA_MEJORA
+        END
+        FROM `pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Motivos_Rep`
+
+
+----------- BD_Motivos_Prime -----------
+
+insert into pe-fesa-datalake-prd01.processed_common_data_model.ReasonDissatisfaction 
+        (
+        SurveyID,
+        CompanyID,
+        CompanyDescription,
+        Domain,
+        CustomerID,
+        CustomerIDDBS,
+        Period,
+        ReasonDissatisfaction,
+        OpportunityImprovement,
+        Suggestion
+        )
+        SELECT
+        CASE
+            WHEN REPORTE_ASIGNACION = 'None' THEN null
+            else REPORTE_ASIGNACION
+        END, 
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        CASE
+            WHEN ORGANIZACION = 'None' THEN null
+            else ORGANIZACION
+        END,
+        'PRIME',
+        CASE
+            WHEN CODIGO_CLIENTE = 'None' THEN null
+            else CODIGO_CLIENTE
+        END,
+        CASE
+            WHEN CODIGO_CLIENTE = 'None' THEN null
+            else CODIGO_CLIENTE
+        END,
+        (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        CASE
+            WHEN MOTIVOS_INSATISFACCION = 'None' THEN null
+            else MOTIVOS_INSATISFACCION
+        END,
+        Oportunidad_Mejora,
+        SUGERENCIA,
+        FROM `pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Motivos_Prime`
+
+
+----------- BD_Motivos_Ren -----------
+
+insert into pe-fesa-datalake-prd01.processed_common_data_model.ReasonDissatisfaction 
+        (
+        SurveyID,
+        CompanyID,
+        CompanyDescription,
+        Domain,
+        CustomerID,
+        CustomerIDDBS,
+        Period,
+        ReasonDissatisfaction,
+        OpportunityImprovement,
+        Suggestion
+        )
+        SELECT
+        CAST(EXTRACT(MONTH FROM DATE (MES_ENCUESTA)) AS STRING) || '-' || NUMERO_CLIENTE || '-' || Serie,
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        CASE
+            WHEN ORGANIZACION = 'None' THEN null
+            else ORGANIZACION
+        END,
+        'RENTAL',
+        CASE
+            WHEN NUMERO_CLIENTE = 'None' THEN null
+            else NUMERO_CLIENTE
+        END,
+        CASE
+            WHEN NUMERO_CLIENTE = 'None' THEN null
+            else NUMERO_CLIENTE
+        END,
+        (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        CASE
+            WHEN MOTIVO_INSATISFACCION = 'None' THEN null
+            else MOTIVO_INSATISFACCION
+        END,
+        OPORTUNIDAD_MEJORA,
+        SUGERENCIA_MEJORA,
+        FROM `pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Motivos_Ren`
+
+
+----------- BD_Motivos_Serv -----------
+
+insert into pe-fesa-datalake-prd01.processed_common_data_model.ReasonDissatisfaction 
+        (
+        SurveyID,
+        CompanyID,
+        CompanyDescription,
+        Domain,
+        CustomerID,
+        CustomerIDDBS,
+        Period,
+        ReasonDissatisfaction,
+        OpportunityImprovement,
+        Suggestion
+        )
+        SELECT
+        CASE
+            WHEN N_ORDEN_TRABAJO = 'None' THEN null
+            ELSE N_ORDEN_TRABAJO
+        END,
+        CASE
+            WHEN ORGANIZACION = 'Ferreyros' THEN '2000'
+            ELSE NULL
+        END,
+        CASE
+            WHEN ORGANIZACION = 'None' THEN null
+            else ORGANIZACION
+        END,
+        'SERVICE',
+        CASE
+            WHEN NO_CLIENTE = 'None' THEN null
+            else NO_CLIENTE
+        END,
+        CASE
+            WHEN NO_CLIENTE = 'None' THEN null
+            else NO_CLIENTE
+        END,
+         (concat(SUBSTRING(CAST(MES_ENCUESTA AS STRING), 1, 10))),
+        CASE
+            WHEN MOTIVO_INSATISFACCION = 'None' THEN null
+            else MOTIVO_INSATISFACCION
+        END,
+        OPORTUNIDAD_MEJORA,
+        SUGERENCIA_MEJORA,
+        FROM `pe-fesa-datalake-prd01.processed_fuentes_diversas.BD_Motivos_Serv`
+

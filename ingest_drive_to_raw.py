@@ -134,17 +134,16 @@ class IngestDriveToRaw:
         
         os.remove(local_file_path)
         
-    def upload_massive_drive_to_raw(self):
+    # def upload_massive_drive_to_raw(self):
         
-        client = bigquery.Client(project = project_id)
+ 
 
-        for worksheet in lgd.worksheets:
-            self.upload_parquet_to_raw(client, worksheet, local_folder_name, BUCKET_NAME)
+idtr = IngestDriveToRaw()    
+client = bigquery.Client(project = project_id)
 
-        for worksheet_sql in lgd.worksheets_sql:
-            self.upload_parquet_to_raw(client, worksheet_sql, local_folder_name, BUCKET_NAME)
-            
-    
+for worksheet in lgd.worksheets:
+    idtr.upload_parquet_to_raw(client, worksheet, local_folder_name, BUCKET_NAME)
 
-
+for worksheet_sql in lgd.worksheets_sql:
+    idtr.upload_parquet_to_raw(client, worksheet_sql, local_folder_name, BUCKET_NAME)
 
